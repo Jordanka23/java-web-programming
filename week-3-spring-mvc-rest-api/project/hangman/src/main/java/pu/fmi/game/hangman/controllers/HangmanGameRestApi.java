@@ -1,5 +1,6 @@
 package pu.fmi.game.hangman.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,4 +42,13 @@ public class HangmanGameRestApi {
     return hangmanGameService.getGameById(id);
   }
 
+  @GetMapping
+  public List<HangmanGame> getStoredGames() {
+    if (hangmanGameService.getStoredGamesCollection().isEmpty())
+    {
+      return new ArrayList<>();
+    }
+
+    return hangmanGameService.getStoredGamesCollection();
+  }
 }
